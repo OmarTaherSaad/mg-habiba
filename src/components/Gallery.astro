@@ -1,0 +1,55 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const tiles = [
+  { label: 'Service Bay', shade: '#0A0A0B', accent: '#C8102E' },
+  { label: 'Diagnostics', shade: '#1A1A1D', accent: '#E63950' },
+  { label: 'Paint Booth', shade: '#0A0A0B', accent: '#C8102E' },
+  { label: 'Parts Stock', shade: '#1A1A1D', accent: '#E63950' },
+  { label: 'Reception', shade: '#0A0A0B', accent: '#C8102E' },
+];
+---
+
+<section id="gallery" class="py-20 md:py-32" style="background: var(--color-bone-soft);">
+  <div class="container-x">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="eyebrow">{t('gallery.eyebrow')}</span>
+        <h2 class="heading mt-5 text-3xl sm:text-4xl md:text-5xl">{t('gallery.title')}</h2>
+      </div>
+      <p class="text-base md:text-lg max-w-md" style="color: var(--color-ink-muted);">
+        {t('gallery.subtitle')}
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+      {tiles.map((t, i) => (
+        <div
+          class={`relative rounded-2xl overflow-hidden aspect-square ${i === 0 ? 'col-span-2 row-span-2 md:aspect-auto' : ''} ${i === 3 ? 'lg:col-span-2' : ''}`}
+          style={`background: ${t.shade};`}
+        >
+          <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full" aria-hidden="true">
+            <defs>
+              <radialGradient id={`g${i}`} cx="50%" cy="30%" r="80%">
+                <stop offset="0%" stop-color={t.accent} stop-opacity="0.5"/>
+                <stop offset="60%" stop-color={t.accent} stop-opacity="0"/>
+              </radialGradient>
+              <pattern id={`p${i}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                <line x1="0" y1="0" x2="20" y2="0" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="200" height="200" fill={`url(#p${i})`}/>
+            <rect width="200" height="200" fill={`url(#g${i})`}/>
+          </svg>
+          <div class="absolute bottom-3 inset-x-3 flex items-center justify-between text-white/95">
+            <span class="text-xs font-semibold uppercase tracking-widest">{t.label}</span>
+            <span class="w-1.5 h-1.5 rounded-full" style={`background: ${t.accent};`}></span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

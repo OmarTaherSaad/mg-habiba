@@ -1,0 +1,86 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const mapsQuery = encodeURIComponent('MG AlHabiba Madinaty Craft Zone New Cairo');
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+const mapsEmbed = `https://maps.google.com/maps?q=${mapsQuery}&z=14&output=embed`;
+---
+
+<section id="location" class="py-20 md:py-32" style="background: var(--color-bone);">
+  <div class="container-x">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+      <div class="lg:col-span-5">
+        <span class="eyebrow">{t('location.eyebrow')}</span>
+        <h2 class="heading mt-5 text-3xl sm:text-4xl md:text-5xl">{t('location.title')}</h2>
+        <p class="mt-5 text-base md:text-lg" style="color: var(--color-ink-muted);">
+          {t('location.subtitle')}
+        </p>
+
+        <dl class="mt-10 space-y-6">
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background: rgba(200,16,46,0.08); color: var(--color-mg-red);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('location.address.label')}</dt>
+              <dd class="mt-1 text-base font-medium" style="color: var(--color-ink);">{t('location.address.value')}</dd>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background: rgba(200,16,46,0.08); color: var(--color-mg-red);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('location.phone.label')}</dt>
+              <dd class="mt-1 text-base font-medium space-x-3" style="color: var(--color-ink);">
+                <a href="tel:+201060603966" class="hover:underline">0106 060 3966</a>
+                <span style="color: var(--color-ink-muted);">·</span>
+                <a href="tel:+201200478847" class="hover:underline">0120 047 8847</a>
+              </dd>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background: rgba(200,16,46,0.08); color: var(--color-mg-red);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('location.hours.label')}</dt>
+              <dd class="mt-1 text-base font-medium" style="color: var(--color-ink);">{t('location.hours.value')}</dd>
+            </div>
+          </div>
+        </dl>
+
+        <a href={mapsHref} target="_blank" rel="noopener" class="btn btn-dark mt-10">
+          {t('location.directions')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="rounded-3xl overflow-hidden border border-black/10 shadow-[var(--shadow-soft)] aspect-[4/3] lg:aspect-[5/4] bg-white">
+          <iframe
+            src={mapsEmbed}
+            width="100%"
+            height="100%"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map to MG AlHabiba"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

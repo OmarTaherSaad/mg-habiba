@@ -1,0 +1,53 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items = [
+  { key: 'item1', icon: 'tool' },
+  { key: 'item2', icon: 'cpu' },
+  { key: 'item3', icon: 'engine' },
+  { key: 'item4', icon: 'spray' },
+  { key: 'item5', icon: 'bolt' },
+  { key: 'item6', icon: 'box' },
+];
+
+const iconPaths: Record<string, string> = {
+  tool: 'M14.7 6.3a4 4 0 0 0-5.4 5.4l-5.6 5.6a2 2 0 1 0 2.8 2.8l5.6-5.6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.8-2.8 2.4-2.4z',
+  cpu: 'M4 4h16v16H4zM8 8h8v8H8zM2 9h2M2 15h2M20 9h2M20 15h2M9 2v2M15 2v2M9 20v2M15 20v2',
+  engine: 'M3 8h2V6h6v2h4l3 3v3h2v4h-2v2H5v-2H3v-4h2v-3l3-3M7 11h4',
+  spray: 'M9 3h6v4h-6zM10 7v3M12 7v3M14 7v3M8 10h8v9a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z',
+  bolt: 'M13 2L4 14h6l-2 8 9-12h-6l2-8z',
+  box: 'M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v10',
+};
+---
+
+<section id="services" class="py-20 md:py-32" style="background: var(--color-bone);">
+  <div class="container-x">
+    <div class="max-w-2xl">
+      <span class="eyebrow">{t('services.eyebrow')}</span>
+      <h2 class="heading mt-5 text-3xl sm:text-4xl md:text-5xl">{t('services.title')}</h2>
+      <p class="mt-5 text-base md:text-lg" style="color: var(--color-ink-muted);">
+        {t('services.subtitle')}
+      </p>
+    </div>
+
+    <div class="mt-12 md:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      {items.map((it) => (
+        <article class="card p-6 md:p-7">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(200,16,46,0.08); color: var(--color-mg-red);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d={iconPaths[it.icon]} />
+            </svg>
+          </div>
+          <h3 class="mt-5 text-lg font-bold tracking-tight" style="color: var(--color-ink);">
+            {t(`services.${it.key}.title` as any)}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-ink-muted);">
+            {t(`services.${it.key}.desc` as any)}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+import { getLangFromUrl, useTranslations, localizedPath, type Lang } from '../i18n/ui';
+import Logo from './Logo.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const otherLang: Lang = lang === 'en' ? 'ar' : 'en';
+const otherLangHref = otherLang === 'en' ? '/' : '/ar/';
+
+const links = [
+  { href: '#services', label: t('nav.services') },
+  { href: '#about', label: t('nav.about') },
+  { href: '#gallery', label: t('nav.gallery') },
+  { href: '#location', label: t('nav.location') },
+];
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-[rgba(247,245,242,0.78)] border-b border-black/5">
+  <div class="container-x flex items-center justify-between h-16 md:h-20">
+    <Logo />
+
+    <nav class="hidden lg:flex items-center gap-8">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="text-sm font-medium text-ink-soft hover:text-mg-red transition-colors"
+          style="color: var(--color-ink-soft);"
+        >{l.label}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2 md:gap-3">
+      <a
+        href={otherLangHref}
+        class="text-sm font-semibold px-3 py-2 rounded-full border border-black/10 hover:bg-black/5 transition"
+        aria-label="Toggle language"
+      >{t('lang.toggle')}</a>
+      <a href="#book" class="btn btn-primary text-sm hidden sm:inline-flex">
+        {t('nav.book')}
+      </a>
+    </div>
+  </div>
+</header>

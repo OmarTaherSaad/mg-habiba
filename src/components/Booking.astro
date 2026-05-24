@@ -1,0 +1,156 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/ui';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const services = [
+  { v: 'maintenance', l: t('booking.serviceOptions.maintenance') },
+  { v: 'diagnostics', l: t('booking.serviceOptions.diagnostics') },
+  { v: 'repair', l: t('booking.serviceOptions.repair') },
+  { v: 'body', l: t('booking.serviceOptions.body') },
+  { v: 'other', l: t('booking.serviceOptions.other') },
+];
+
+const waNumber = '201060603966';
+const waLabels = {
+  name: t('booking.name'),
+  phone: t('booking.phone'),
+  model: t('booking.model'),
+  year: t('booking.year'),
+  service: t('booking.service'),
+  notes: t('booking.notes'),
+  title: t('booking.waMessageTitle'),
+};
+---
+
+<section id="book" class="relative py-20 md:py-32 overflow-hidden" style="background: var(--color-ink); color: white;">
+  <div
+    class="absolute -bottom-32 -left-32 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-30"
+    style="background: radial-gradient(circle, #C8102E 0%, transparent 60%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="container-x relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <div class="lg:col-span-5">
+      <span class="eyebrow" style="color: #F0788C;">{t('booking.eyebrow')}</span>
+      <h2 class="heading mt-5 text-3xl sm:text-4xl md:text-5xl">{t('booking.title')}</h2>
+      <p class="mt-5 text-base md:text-lg" style="color: rgba(255,255,255,0.75);">{t('booking.subtitle')}</p>
+
+      <div class="mt-8 space-y-3">
+        <a href="tel:+201060603966" class="flex items-center gap-3 text-base font-semibold hover:text-[#F0788C] transition-colors">
+          <span class="w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.08);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          0106 060 3966
+        </a>
+        <a href="tel:+201200478847" class="flex items-center gap-3 text-base font-semibold hover:text-[#F0788C] transition-colors">
+          <span class="w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.08);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          0120 047 8847
+        </a>
+      </div>
+    </div>
+
+    <form
+      id="booking-form"
+      class="lg:col-span-7 rounded-3xl p-6 md:p-10 bg-white text-ink shadow-[var(--shadow-lift)]"
+      style="color: var(--color-ink);"
+      data-wa-number={waNumber}
+      data-wa-title={waLabels.title}
+      data-wa-name={waLabels.name}
+      data-wa-phone={waLabels.phone}
+      data-wa-model={waLabels.model}
+      data-wa-year={waLabels.year}
+      data-wa-service={waLabels.service}
+      data-wa-notes={waLabels.notes}
+    >
+      <div class="grid sm:grid-cols-2 gap-4 md:gap-5">
+        <label class="block sm:col-span-2">
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('booking.name')}</span>
+          <input required type="text" name="name" class="mt-2 w-full px-4 py-3 rounded-xl border border-black/10 focus:outline-none focus:border-[var(--color-mg-red)] focus:ring-2 focus:ring-[rgba(200,16,46,0.15)] transition" />
+        </label>
+
+        <label class="block">
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('booking.phone')}</span>
+          <input required type="tel" name="phone" class="mt-2 w-full px-4 py-3 rounded-xl border border-black/10 focus:outline-none focus:border-[var(--color-mg-red)] focus:ring-2 focus:ring-[rgba(200,16,46,0.15)] transition" />
+        </label>
+
+        <label class="block">
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('booking.year')}</span>
+          <input type="number" name="year" min="1990" max="2030" class="mt-2 w-full px-4 py-3 rounded-xl border border-black/10 focus:outline-none focus:border-[var(--color-mg-red)] focus:ring-2 focus:ring-[rgba(200,16,46,0.15)] transition" />
+        </label>
+
+        <label class="block sm:col-span-2">
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('booking.model')}</span>
+          <input type="text" name="model" placeholder={t('booking.modelPlaceholder')} class="mt-2 w-full px-4 py-3 rounded-xl border border-black/10 focus:outline-none focus:border-[var(--color-mg-red)] focus:ring-2 focus:ring-[rgba(200,16,46,0.15)] transition" />
+        </label>
+
+        <label class="block sm:col-span-2">
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('booking.service')}</span>
+          <select required name="service" class="mt-2 w-full px-4 py-3 rounded-xl border border-black/10 focus:outline-none focus:border-[var(--color-mg-red)] focus:ring-2 focus:ring-[rgba(200,16,46,0.15)] transition bg-white">
+            {services.map((s) => <option value={s.v} data-label={s.l}>{s.l}</option>)}
+          </select>
+        </label>
+
+        <label class="block sm:col-span-2">
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('booking.notes')}</span>
+          <textarea name="notes" rows="3" class="mt-2 w-full px-4 py-3 rounded-xl border border-black/10 focus:outline-none focus:border-[var(--color-mg-red)] focus:ring-2 focus:ring-[rgba(200,16,46,0.15)] transition resize-none"></textarea>
+        </label>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+        <button type="submit" class="btn btn-primary" style="background: #25D366; box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.52 3.48A11.94 11.94 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.14 1.6 5.95L0 24l6.27-1.64a11.93 11.93 0 0 0 5.77 1.47h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.18-3.49-8.43zM12.05 21.8h-.01a9.86 9.86 0 0 1-5.02-1.38l-.36-.21-3.72.97 1-3.63-.24-.37a9.85 9.85 0 0 1-1.51-5.25c0-5.46 4.44-9.9 9.9-9.9 2.65 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.9 7c-.01 5.46-4.45 9.87-9.94 9.87zm5.43-7.4c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01a1.1 1.1 0 0 0-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+          </svg>
+          {t('booking.submit')}
+        </button>
+        <a href="tel:+201060603966" class="text-sm font-semibold hover:underline" style="color: var(--color-ink-muted);">
+          {t('booking.submitAlt')}
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('booking-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const num = form.getAttribute('data-wa-number');
+      const L = {
+        title: form.getAttribute('data-wa-title'),
+        name: form.getAttribute('data-wa-name'),
+        phone: form.getAttribute('data-wa-phone'),
+        model: form.getAttribute('data-wa-model'),
+        year: form.getAttribute('data-wa-year'),
+        service: form.getAttribute('data-wa-service'),
+        notes: form.getAttribute('data-wa-notes'),
+      };
+      const serviceSel = form.querySelector('select[name="service"]');
+      const serviceLabel = serviceSel && serviceSel.selectedOptions[0]
+        ? serviceSel.selectedOptions[0].getAttribute('data-label') || serviceSel.value
+        : '';
+      const lines = [
+        '*' + L.title + '*',
+        '',
+        L.name + ': ' + (data.get('name') || ''),
+        L.phone + ': ' + (data.get('phone') || ''),
+      ];
+      if (data.get('model')) lines.push(L.model + ': ' + data.get('model'));
+      if (data.get('year')) lines.push(L.year + ': ' + data.get('year'));
+      lines.push(L.service + ': ' + serviceLabel);
+      if (data.get('notes')) lines.push('', L.notes + ': ' + data.get('notes'));
+      const text = encodeURIComponent(lines.join('\n'));
+      window.open('https://wa.me/' + num + '?text=' + text, '_blank', 'noopener');
+    });
+  })();
+</script>
