@@ -3,9 +3,9 @@ import { getLangFromUrl, useTranslations } from '../i18n/ui';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const mapsQuery = encodeURIComponent('MG AlHabiba Madinaty Craft Zone New Cairo');
-const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
-const mapsEmbed = `https://maps.google.com/maps?q=${mapsQuery}&z=14&output=embed`;
+const mapsQuery = encodeURIComponent('AlHabiba Auto, Craft Zone, Block 3, Second New Cairo, Cairo Governorate');
+const mapsHref = 'https://goo.gl/maps/1k1dt8wyH2JU1BSX8';
+const mapsEmbed = `https://maps.google.com/maps?q=${mapsQuery}&ftid=0x1457f5cc412bb367:0xed0132331f6755a8&z=16&output=embed`;
 ---
 
 <section id="location" class="py-20 md:py-32" style="background: var(--color-bone);">
@@ -39,10 +39,8 @@ const mapsEmbed = `https://maps.google.com/maps?q=${mapsQuery}&z=14&output=embed
             </div>
             <div>
               <dt class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-ink-muted);">{t('location.phone.label')}</dt>
-              <dd class="mt-1 text-base font-medium space-x-3" style="color: var(--color-ink);">
-                <a href="tel:+201060603966" class="hover:underline">0106 060 3966</a>
-                <span style="color: var(--color-ink-muted);">·</span>
-                <a href="tel:+201200478847" class="hover:underline">0120 047 8847</a>
+              <dd class="mt-1 text-base font-medium" style="color: var(--color-ink);">
+                <a href="tel:+201207777225" class="hover:underline">0120 777 7225</a>
               </dd>
             </div>
           </div>
