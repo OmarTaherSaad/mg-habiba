@@ -98,6 +98,8 @@ export const ui = {
     'footer.quickLinks': 'Quick links',
     'footer.contact': 'Contact',
     'footer.rights': 'All rights reserved.',
+    'footer.madeWith': 'Made with',
+    'footer.madeBy': 'by',
     'lang.toggle': 'العربية',
   },
   ar: {
@@ -190,6 +192,8 @@ export const ui = {
     'footer.quickLinks': 'روابط سريعة',
     'footer.contact': 'تواصل',
     'footer.rights': 'جميع الحقوق محفوظة.',
+    'footer.madeWith': 'صُنع بكل',
+    'footer.madeBy': 'بواسطة',
     'lang.toggle': 'English',
   },
 } as const;

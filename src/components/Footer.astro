@@ -60,6 +60,17 @@ const links = [
 
   <div class="container-x mt-12 pt-6 hairline flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-xs" style="color: var(--color-ink-muted);">
     <span>© {year} AlHabiba Auto. {t('footer.rights')}</span>
-    <span>MG AlHabiba · Madinaty, New Cairo</span>
+    <span class="inline-flex items-center gap-1.5">
+      {t('footer.madeWith')}
+      <span aria-hidden="true" style="color: var(--color-mg-red);">♥</span>
+      {t('footer.madeBy')}
+      <a
+        href="https://omartahersaad.com"
+        target="_blank"
+        rel="noopener"
+        class="font-semibold hover:text-[var(--color-mg-red)] transition-colors"
+        style="color: var(--color-ink);"
+      >OTS</a>
+    </span>
   </div>
 </footer>
